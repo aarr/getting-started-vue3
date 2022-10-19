@@ -388,6 +388,22 @@
   <transition name="transition-sample">
     <span v-show="isShowTransitionSample">Transition Sample</span>
   </transition>
+  <hr />
+  <!-- ==================================== -->
+  <h2>Mixins</h2>
+  <h2>Local</h2>
+  <pre>
+    Mixin用オブジェクトを定義し、各Vueコンポーネントにmixinすることで機能の再利用が可能
+  </pre>
+  <input type="text" v-model="mixinLocalMessage" />
+  <button v-on:click="methodMixinLocal">Mixin(Local)</button>
+  <h2>Global</h2>
+  <pre>
+    Vueインスタンスに対してmixin定義を施すことで、すべてのコンポーネントインスタンスに対して適応させることが可能。
+    更に各コンポーネントにてその内容を上書きすることも可能
+  </pre>
+  <input type="text" v-model="mixinMessage" />
+  <button v-on:click="methodMixin">Mixin(Global)</button>
 </template>
 
 <style>
@@ -665,5 +681,24 @@ export default {
       template: "<p>Local Component Sample {{ msg }}]</p>",
     },
   },
+  // Mixins Local
+  mixins: [
+    {
+      data: function () {
+        return {
+          mixinLocalMessage: "Mixin Local Sample",
+          mixinMessage: "Mixin Local Sample",
+        };
+      },
+      methods: {
+        methodMixinLocal: function () {
+          alert(this.mixinLocalMessage);
+        },
+      },
+      created: function () {
+        console.log("from Mixin Local");
+      },
+    },
+  ],
 };
 </script>
