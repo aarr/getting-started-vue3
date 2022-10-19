@@ -116,6 +116,22 @@ npm run serve
 
 ## Vueライフサイクル
 
+- 全てのライフサイクルフックのコンテキスト（this）はVueインスタンス
+- インスタンスプロパティ、コールバックでアロー関数を利用しないこと。アロー関数はコンテキスト（this）を持たない為。
+
+    - 下記のような実装をした際に、this.parameterが存在しないとエラーになる
+
+        ~~~vue:
+        props: {
+            parameter: String
+        },
+        data: () => ({
+            criteria: this.parameter
+        }),
+        ~~~
+
+
+
 [![lifecycle](https://ja.vuejs.org/assets/lifecycle.16e4c08e.png)](https://ja.vuejs.org/guide/essentials/lifecycle.html#ライフサイクルダイアグラム)
 
 ***

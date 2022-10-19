@@ -362,17 +362,17 @@
   <pre>
     Vueインスタンスにコンポーネント設定することで、タグとして利用可能。コンポーネント名はハイフン区切り(ケバブ形式）を利用する必要がある。
   </pre>
-  <global-component-sample></global-component-sample>
-  <global-component-sample></global-component-sample>
-  <local-component-sample></local-component-sample>
-  <local-component-sample></local-component-sample>
+  <global-component-sample msg="Global Component1"></global-component-sample>
+  <global-component-sample msg="Global Component2"></global-component-sample>
+  <local-component-sample msg="Local Component1"></local-component-sample>
+  <local-component-sample msg="Local Component2"></local-component-sample>
   <!-- ------------------------------------ -->
   <h3>Dynamic Process</h3>
   <pre>
     Component定義の中で、Componentで利用するdataやmethods定義を行う必要がある。
   </pre>
-  <counter-component></counter-component>
-  <counter-component></counter-component>
+  <counter-component initval="0"></counter-component>
+  <counter-component initval="10"></counter-component>
   <hr />
   <!-- ==================================== -->
   <h2>Transition</h2>
@@ -656,10 +656,13 @@ export default {
     this.debouncedGetItemList = _.debounce(this.getItemList, 1000);
   },
   // Component
-  // Local Scolpe
+  // Local Scope
   components: {
     "local-component-sample": {
-      template: "<p>Local Component Sample</p>",
+      props: {
+        msg: String,
+      },
+      template: "<p>Local Component Sample {{ msg }}]</p>",
     },
   },
 };
